@@ -2,6 +2,7 @@ package jobtrackr.Entity;
 
 import jakarta.persistence.*;
 import jobtrackr.Dto.VagaCandidatadaCreateDTO;
+import jobtrackr.Dto.VagaCandidatadaUpdateDTO;
 import jobtrackr.Enuns.NivelProfissional;
 import jobtrackr.Enuns.PlataformaCandidatura;
 import jobtrackr.Enuns.StatusCandidatura;
@@ -51,5 +52,15 @@ public class VagaCandidatada {
         setDataCandidatura(dto.dataCandidatura() != null ? dto.dataCandidatura() : LocalDate.now());
         setStatus(dto.status() != null ? dto.status() : StatusCandidatura.EM_ANDAMENTO);
         setDescricaoVaga(dto.descricaoVaga());
+    }
+
+    public void updateVagaCandidatada(VagaCandidatadaUpdateDTO dto) {
+        if (dto.nomeEmpresa() != null) this.nomeEmpresa = dto.nomeEmpresa();
+        if (dto.cargo() != null) this.cargo = dto.cargo();
+        if (dto.nivel() != null) this.nivel = dto.nivel();
+        if (dto.plataforma() != null) this.plataforma = dto.plataforma();
+        if (dto.linkVaga() != null) this.linkVaga = dto.linkVaga();
+        if (dto.status() != null) this.status = dto.status();
+        if (dto.descricaoVaga() != null) this.descricaoVaga = dto.descricaoVaga();
     }
 }

@@ -34,35 +34,7 @@ public class VagaCandidatadaService {
 
     public VagaCandidatadaListDTO update(Integer id, VagaCandidatadaUpdateDTO dto) {
         VagaCandidatada vaga = repository.findById(id).orElseThrow(() -> new EntityNotFound("Vaga não encontrada"));
-
-        if (dto.nomeEmpresa() != null) {
-            vaga.setNomeEmpresa(dto.nomeEmpresa());
-        }
-
-        if (dto.cargo() != null) {
-            vaga.setCargo(dto.cargo());
-        }
-
-        if (dto.nivel() != null) {
-            vaga.setNivel(dto.nivel());
-        }
-
-        if (dto.plataforma() != null) {
-            vaga.setPlataforma(dto.plataforma());
-        }
-
-        if (dto.linkVaga() != null) {
-            vaga.setLinkVaga(dto.linkVaga());
-        }
-
-        if (dto.status() != null) {
-            vaga.setStatus(dto.status());
-        }
-
-        if (dto.descricaoVaga() != null) {
-            vaga.setDescricaoVaga(dto.descricaoVaga());
-        }
-
+        vaga.updateVagaCandidatada(dto);
         repository.save(vaga);
         return new VagaCandidatadaListDTO(vaga);
     }
