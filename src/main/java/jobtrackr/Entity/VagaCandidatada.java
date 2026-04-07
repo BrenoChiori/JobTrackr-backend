@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity(name = "VAGACANDIDATADA")
 @Getter
@@ -35,7 +35,7 @@ public class VagaCandidatada {
 
     private String linkVaga;
 
-    private Date dataCandidatura;
+    private LocalDate dataCandidatura;
 
     @Enumerated(EnumType.STRING)
     private StatusCandidatura status;
@@ -48,7 +48,7 @@ public class VagaCandidatada {
         setNivel(dto.nivel());
         setPlataforma(dto.plataforma());
         setLinkVaga(dto.linkVaga());
-        setDataCandidatura(dto.dataCandidatura() != null ? dto.dataCandidatura() : new Date());
+        setDataCandidatura(dto.dataCandidatura() != null ? dto.dataCandidatura() : LocalDate.now());
         setStatus(dto.status() != null ? dto.status() : StatusCandidatura.EM_ANDAMENTO);
         setDescricaoVaga(dto.descricaoVaga());
     }

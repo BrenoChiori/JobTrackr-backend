@@ -5,7 +5,7 @@ import jobtrackr.Enuns.NivelProfissional;
 import jobtrackr.Enuns.PlataformaCandidatura;
 import jobtrackr.Enuns.StatusCandidatura;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record VagaCandidatadaListDTO(
         Integer id,
@@ -20,7 +20,7 @@ public record VagaCandidatadaListDTO(
 
         String linkVaga,
 
-        Date dataCandidatura,
+        LocalDate dataCandidatura,
 
         StatusCandidatura status,
 
