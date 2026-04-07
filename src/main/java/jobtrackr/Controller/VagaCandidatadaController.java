@@ -25,9 +25,9 @@ public class VagaCandidatadaController {
     @PostMapping
     @Transactional
     public ResponseEntity<VagaCandidatadaListDTO> create(@RequestBody @Valid VagaCandidatadaCreateDTO vagaCandidatadaCreateDTO) {
-        VagaCandidatada obj = vagaCandidatadaService.create(vagaCandidatadaCreateDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(new VagaCandidatadaListDTO(obj).id()).toUri();
-        return ResponseEntity.created(uri).build();
+        VagaCandidatadaListDTO obj = vagaCandidatadaService.create(vagaCandidatadaCreateDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.id()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 
     @GetMapping

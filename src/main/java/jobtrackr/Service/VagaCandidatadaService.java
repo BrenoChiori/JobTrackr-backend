@@ -18,8 +18,8 @@ public class VagaCandidatadaService {
     @Autowired
     private VagaCandidatadaRepository repository;
 
-    public VagaCandidatada create(VagaCandidatadaCreateDTO dto) {
-        return repository.save(new VagaCandidatada(dto));
+    public VagaCandidatadaListDTO create(VagaCandidatadaCreateDTO dto) {
+        return new VagaCandidatadaListDTO(repository.save(new VagaCandidatada(dto)));
     }
 
     public List<VagaCandidatadaListDTO> findAll() {
