@@ -3,6 +3,8 @@ package jobtrackr.Exceptions.Handler;
 import jobtrackr.Exceptions.Custom.EntityNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -19,5 +21,18 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
+        var errors = ex.getFieldErrors();
+
+        return ResponseEntity.badRequest().body(errors.stream().map(DadosErrosValidacao::new).toList());
+    }
+
+    private record DadosErrosValidacao(String campo, String mensagem) {
+        public DadosErrosValidacao(FieldError fieldError) {
+            this(fieldError.getField(), fieldError.getDefaultMessage());
+        }
     }
 }
