@@ -2,9 +2,9 @@ package jobtrackr.Config.Controller;
 
 import jakarta.validation.Valid;
 import jobtrackr.Config.Dto.DadosTokenJWT;
-import jobtrackr.Config.Service.TokenService;
 import jobtrackr.Config.Dto.LoginDTO;
 import jobtrackr.Config.Entity.Usuario;
+import jobtrackr.Config.Service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

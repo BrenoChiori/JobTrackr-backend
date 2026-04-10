@@ -4,8 +4,8 @@ import jobtrackr.Dto.VagaCandidatadaCreateDTO;
 import jobtrackr.Dto.VagaCandidatadaListDTO;
 import jobtrackr.Dto.VagaCandidatadaUpdateDTO;
 import jobtrackr.Entity.VagaCandidatada;
-import jobtrackr.Repository.VagaCandidatadaRepository;
 import jobtrackr.Exceptions.Custom.EntityNotFound;
+import jobtrackr.Repository.VagaCandidatadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
 package jobtrackr.Controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jobtrackr.Dto.VagaCandidatadaCreateDTO;
 import jobtrackr.Dto.VagaCandidatadaListDTO;
 import jobtrackr.Dto.VagaCandidatadaUpdateDTO;
-import jobtrackr.Entity.VagaCandidatada;
 import jobtrackr.Service.VagaCandidatadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vagas")
+@SecurityRequirement(name = "bearer-key")
 public class VagaCandidatadaController {
 
     @Autowired
