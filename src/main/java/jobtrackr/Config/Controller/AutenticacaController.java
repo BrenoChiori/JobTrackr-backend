@@ -5,7 +5,6 @@ import jobtrackr.Config.Dto.DadosTokenJWT;
 import jobtrackr.Config.Dto.LoginDTO;
 import jobtrackr.Config.Entity.Usuario;
 import jobtrackr.Config.Service.TokenService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,21 +13,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/login")
 public class AutenticacaController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TokenService tokenService;
+    private final TokenService tokenService;
+
+    public AutenticacaController(AuthenticationManager authenticationManager, TokenService tokenService) {
+        this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
+    }
 
     @PostMapping
-    public ResponseEntity efetuarLogin(@RequestBody @Valid LoginDTO login) {
+    public ResponseEntity<?> efetuarLogin(@RequestBody @Valid LoginDTO login) {
         var AuthenticationToken = new UsernamePasswordAuthenticationToken(login.login(), login.password());
         var autentication = authenticationManager.authenticate(AuthenticationToken);
-        var tokenJWT = tokenService.gerarToken((Usuario) autentication.getPrincipal());
+        var tokenJWT = tokenService.gerarToken((Usuario) Objects.requireNonNull(autentication.getPrincipal()));
 
         return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }

@@ -6,7 +6,6 @@ import jobtrackr.Dto.VagaCandidatadaUpdateDTO;
 import jobtrackr.Entity.VagaCandidatada;
 import jobtrackr.Exceptions.Custom.EntityNotFound;
 import jobtrackr.Repository.VagaCandidatadaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class VagaCandidatadaService {
 
-    @Autowired
-    private VagaCandidatadaRepository repository;
+    private final VagaCandidatadaRepository repository;
+
+    public VagaCandidatadaService(VagaCandidatadaRepository repository) {
+        this.repository = repository;
+    }
 
     public VagaCandidatadaListDTO create(VagaCandidatadaCreateDTO dto) {
         return new VagaCandidatadaListDTO(repository.save(new VagaCandidatada(dto)));

@@ -7,7 +7,6 @@ import jobtrackr.Dto.VagaCandidatadaCreateDTO;
 import jobtrackr.Dto.VagaCandidatadaListDTO;
 import jobtrackr.Dto.VagaCandidatadaUpdateDTO;
 import jobtrackr.Service.VagaCandidatadaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,8 +19,11 @@ import java.util.List;
 @SecurityRequirement(name = "bearer-key")
 public class VagaCandidatadaController {
 
-    @Autowired
-    private VagaCandidatadaService vagaCandidatadaService;
+    private final VagaCandidatadaService vagaCandidatadaService;
+
+    public VagaCandidatadaController(VagaCandidatadaService vagaCandidatadaService) {
+        this.vagaCandidatadaService = vagaCandidatadaService;
+    }
 
     @PostMapping
     @Transactional
